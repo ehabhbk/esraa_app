@@ -14,7 +14,7 @@ class TasksScreen extends StatefulWidget {
 
 class _TasksScreenState extends State<TasksScreen> {
   final _controller = TextEditingController();
-  String _category = 'عام';
+  final String _category = 'عام';
 
   @override
   void initState() {

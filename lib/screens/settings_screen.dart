@@ -25,7 +25,7 @@ class SettingsScreen extends StatelessWidget {
                         subtitle: const Text('تفعيل الألوان الداكنة'),
                         value: settings.isDarkMode,
                         onChanged: (_) => settings.toggleDarkMode(),
-                        activeColor: AppColors.primary,
+                        activeThumbColor: AppColors.primary,
                       ),
                       const Divider(),
                       SwitchListTile(
@@ -33,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
                         subtitle: const Text('بصمة الإصبع أو القفل'),
                         value: settings.biometricEnabled,
                         onChanged: (_) => settings.toggleBiometric(),
-                        activeColor: AppColors.primary,
+                        activeThumbColor: AppColors.primary,
                       ),
                       const Divider(),
                       SwitchListTile(
@@ -41,7 +41,7 @@ class SettingsScreen extends StatelessWidget {
                         subtitle: const Text('تفعيل جميع الإشعارات'),
                         value: settings.notificationsEnabled,
                         onChanged: (_) => settings.toggleNotifications(),
-                        activeColor: AppColors.primary,
+                        activeThumbColor: AppColors.primary,
                       ),
                     ],
                   ),

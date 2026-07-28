@@ -52,10 +52,11 @@ class _NotesScreenState extends State<NotesScreen> {
               ),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
-                value: category,
+                initialValue: category,
                 decoration: const InputDecoration(
                   labelText: 'التصنيف',
                   isDense: true,
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                 ),
                 items: ['عام', 'طبي', 'شخصي', 'أهداف', 'مواقف', 'الامتنان']
                     .map((c) => DropdownMenuItem(value: c, child: Text(c)))

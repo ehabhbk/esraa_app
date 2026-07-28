@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import '../models/prayer_record.dart';
 import '../providers/prayer_provider.dart';
 import '../theme/app_colors.dart';
-import 'glass_card.dart';
 
 class PrayerTrackerWidget extends StatelessWidget {
   const PrayerTrackerWidget({super.key});

@@ -106,7 +106,7 @@ class NotificationService {
     await showNotification(
       id: 300,
       title: '💧 حان وقت شرب الماء',
-      body: 'اشربي كوب ماء الآن 💙 (${cups}/8)',
+      body: 'اشربي كوب ماء الآن 💙 ($cups/8)',
     );
     await prefs.setInt(cupKey, cups + 1);
   }

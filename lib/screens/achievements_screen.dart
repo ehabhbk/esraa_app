@@ -46,8 +46,8 @@ class AchievementsScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildStat('${achievements.length}', 'إنجاز'),
-                      _buildStat('${(achievements.length * 0.3).toInt()}', 'مُنجز'),
+              _buildStat('${achievements.length}', 'إنجاز'),
+              _buildStat('${(achievements.length * 0.3).toInt()}', 'منجز'),
                       _buildStat('🔥 0', 'أيام'),
                     ],
                   ),
@@ -56,18 +56,13 @@ class AchievementsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             ...achievements.map((a) {
-              final progress = 0.0;
-              final isUnlocked = false;
               return Container(
                 margin: const EdgeInsets.only(bottom: 8),
                 child: GlassCard(
                   child: Row(
                     children: [
                       Text(a['emoji'] as String,
-                          style: TextStyle(
-                            fontSize: 36,
-                            color: isUnlocked ? null : Colors.grey[400],
-                          )),
+                          style: const TextStyle(fontSize: 36, color: Colors.grey)),
                       const SizedBox(width: 16),
                       Expanded(
                         child: Column(
@@ -75,12 +70,10 @@ class AchievementsScreen extends StatelessWidget {
                           children: [
                             Text(
                               a['title'] as String,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 16,
-                                color: isUnlocked
-                                    ? AppColors.textPrimary
-                                    : Colors.grey[500],
+                                color: Colors.grey,
                               ),
                             ),
                             Text(
@@ -94,7 +87,7 @@ class AchievementsScreen extends StatelessWidget {
                             ClipRRect(
                               borderRadius: BorderRadius.circular(6),
                               child: LinearProgressIndicator(
-                                value: progress,
+                                value: 0.0,
                                 minHeight: 6,
                                 backgroundColor: Colors.grey[200],
                                 valueColor: const AlwaysStoppedAnimation<Color>(

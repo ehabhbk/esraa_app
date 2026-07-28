@@ -13,7 +13,7 @@ class QuoteCard extends StatefulWidget {
 
 class _QuoteCardState extends State<QuoteCard> {
   late String _quote;
-  int _day = DateTime.now().day;
+  final int _day = DateTime.now().day;
 
   @override
   void initState() {

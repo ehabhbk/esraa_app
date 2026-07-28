@@ -1,13 +1,5 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import '../models/mood.dart';
-import '../models/daily_evaluation.dart';
-import '../models/task.dart';
-import '../models/water_intake.dart';
-import '../models/meal_log.dart';
-import '../models/prayer_record.dart';
-import '../models/note.dart';
-import '../models/letter_to_father.dart';
 
 class DatabaseService {
   static Database? _database;

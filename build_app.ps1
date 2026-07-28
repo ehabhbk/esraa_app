@@ -75,11 +75,14 @@ Pop-Location
 # 5. Analyze code
 Write-Host "[5/6] Analyzing code..." -ForegroundColor Cyan
 Push-Location $scriptPath
-$analysis = flutter analyze 2>&1 | Out-String
-if ($LASTEXITCODE -eq 0) {
+$analysisFile = "$env:TEMP\flutter_analyze_output.txt"
+flutter analyze > $analysisFile 2>&1
+$analyzeExit = $LASTEXITCODE
+Get-Content $analysisFile
+if ($analyzeExit -eq 0) {
     Write-Host "OK: No issues found" -ForegroundColor Green
 } else {
-    Write-Host "Analysis complete (warnings are normal)" -ForegroundColor Yellow
+    Write-Host "NOTE: $analyzeExit issues found (build can still proceed)" -ForegroundColor Yellow
 }
 Pop-Location
 
