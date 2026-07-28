@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'app_colors.dart';
 
 class AppTheme {
+  static String get _fontFamily => GoogleFonts.tajawal().fontFamily!;
+
   static ThemeData get lightTheme {
     return ThemeData(
       useMaterial3: true,
-      fontFamily: 'Tajawal',
+      fontFamily: _fontFamily,
       colorScheme: ColorScheme.light(
         primary: AppColors.primary,
         secondary: AppColors.secondary,
@@ -17,7 +20,6 @@ class AppTheme {
         elevation: 0,
         centerTitle: true,
         titleTextStyle: TextStyle(
-          fontFamily: 'Tajawal',
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: AppColors.textPrimary,
@@ -41,7 +43,6 @@ class AppTheme {
             borderRadius: BorderRadius.circular(16),
           ),
           textStyle: const TextStyle(
-            fontFamily: 'Tajawal',
             fontSize: 16,
             fontWeight: FontWeight.w600,
           ),
@@ -59,7 +60,6 @@ class AppTheme {
           borderSide: const BorderSide(color: AppColors.primary, width: 2),
         ),
         labelStyle: const TextStyle(
-          fontFamily: 'Tajawal',
           color: AppColors.textSecondary,
         ),
       ),
@@ -76,7 +76,7 @@ class AppTheme {
   static ThemeData get darkTheme {
     return ThemeData(
       useMaterial3: true,
-      fontFamily: 'Tajawal',
+      fontFamily: _fontFamily,
       brightness: Brightness.dark,
       colorScheme: ColorScheme.dark(
         primary: AppColors.primaryLight,
@@ -89,7 +89,6 @@ class AppTheme {
         elevation: 0,
         centerTitle: true,
         titleTextStyle: TextStyle(
-          fontFamily: 'Tajawal',
           fontSize: 20,
           fontWeight: FontWeight.bold,
           color: Colors.white,
