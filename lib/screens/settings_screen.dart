@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../theme/app_colors.dart';
 import '../widgets/glass_card.dart';
 import '../providers/settings_provider.dart';
+import '../services/notification_service.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -117,6 +118,36 @@ class SettingsScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 GlassCard(
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SwitchListTile(
+                        title: const Text('📊 الملخص اليومي'),
+                        subtitle: const Text('إشعار بنهاية اليوم'),
+                        value: settings.summaryEnabled,
+                        onChanged: (_) => settings.toggleSummary(),
+                        activeThumbColor: AppColors.primary,
+                      ),
+                      if (settings.summaryEnabled) ...[
+                        const Divider(),
+                        ListTile(
+                          leading: const Icon(Icons.access_time, color: AppColors.primary),
+                          title: Text('وقت الإشعار: ${settings.summaryHour.toString().padLeft(2, '0')}:${settings.summaryMinute.toString().padLeft(2, '0')}'),
+                          trailing: const Icon(Icons.edit, color: AppColors.textLight),
+                          onTap: () async {
+                            final t = await showTimePicker(
+                              context: context,
+                              initialTime: TimeOfDay(hour: settings.summaryHour, minute: settings.summaryMinute),
+                            );
+                            if (t != null) settings.setSummaryTime(t.hour, t.minute);
+                          },
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GlassCard(
+                  child: Column(
                     children: [
                       const ListTile(
                         leading:
@@ -131,6 +162,26 @@ class SettingsScreen extends StatelessWidget {
                         subtitle: Text('للدكتورة إسراء(إيلاف) مضوي'),
                       ),
                     ],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                GlassCard(
+                  child: ListTile(
+                    leading: const Icon(Icons.notifications_active, color: AppColors.primary),
+                    title: const Text('🔔 إرسال إشعار تجريبي'),
+                    subtitle: const Text('اختبر وصول الإشعارات'),
+                    onTap: () async {
+                      await NotificationService.showNotification(
+                        id: 999,
+                        title: '🔔 إشعار تجريبي',
+                        body: 'الإشعارات شغالة يا دكتورة إسراء ✅',
+                      );
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('✅ تم إرسال الإشعار')),
+                        );
+                      }
+                    },
                   ),
                 ),
                 const SizedBox(height: 16),

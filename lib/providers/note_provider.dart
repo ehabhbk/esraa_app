@@ -40,4 +40,13 @@ class NoteProvider extends ChangeNotifier {
 
   List<Note> get recentNotes =>
       _notes.take(10).toList();
+
+  List<Note> get todayNotes {
+    final today = DateTime.now();
+    return _notes.where((n) =>
+      n.createdAt.year == today.year &&
+      n.createdAt.month == today.month &&
+      n.createdAt.day == today.day
+    ).toList();
+  }
 }
