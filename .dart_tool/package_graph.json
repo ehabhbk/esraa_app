@@ -1,17 +1,16 @@
 {
   "roots": [
-    "esraa_app"
+    "dr.esraa"
   ],
   "packages": [
     {
-      "name": "esraa_app",
+      "name": "dr.esraa",
       "version": "1.0.0+1",
       "dependencies": [
         "fl_chart",
         "flutter",
         "flutter_animate",
         "flutter_local_notifications",
-        "google_fonts",
         "home_widget",
         "intl",
         "local_auth",
@@ -84,16 +83,6 @@
         "url_launcher_platform_interface",
         "url_launcher_web",
         "url_launcher_windows"
-      ]
-    },
-    {
-      "name": "google_fonts",
-      "version": "6.3.3",
-      "dependencies": [
-        "crypto",
-        "flutter",
-        "http",
-        "path_provider"
       ]
     },
     {
@@ -409,23 +398,6 @@
         "flutter",
         "meta",
         "url_launcher_platform_interface"
-      ]
-    },
-    {
-      "name": "http",
-      "version": "1.6.0",
-      "dependencies": [
-        "async",
-        "http_parser",
-        "meta",
-        "web"
-      ]
-    },
-    {
-      "name": "crypto",
-      "version": "3.0.7",
-      "dependencies": [
-        "typed_data"
       ]
     },
     {
@@ -758,23 +730,6 @@
       ]
     },
     {
-      "name": "http_parser",
-      "version": "4.1.2",
-      "dependencies": [
-        "collection",
-        "source_span",
-        "string_scanner",
-        "typed_data"
-      ]
-    },
-    {
-      "name": "typed_data",
-      "version": "1.4.0",
-      "dependencies": [
-        "collection"
-      ]
-    },
-    {
       "name": "objective_c",
       "version": "9.5.0",
       "dependencies": [
@@ -855,6 +810,13 @@
       "dependencies": []
     },
     {
+      "name": "crypto",
+      "version": "3.0.7",
+      "dependencies": [
+        "typed_data"
+      ]
+    },
+    {
       "name": "pub_semver",
       "version": "2.2.0",
       "dependencies": [
@@ -913,6 +875,13 @@
       "version": "1.0.0",
       "dependencies": [
         "path"
+      ]
+    },
+    {
+      "name": "typed_data",
+      "version": "1.4.0",
+      "dependencies": [
+        "collection"
       ]
     },
     {

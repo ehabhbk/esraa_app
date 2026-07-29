@@ -121,14 +121,14 @@ class SettingsScreen extends StatelessWidget {
                       const ListTile(
                         leading:
                             Icon(Icons.info_outline, color: AppColors.primary),
-                        title: Text('عن التطبيق'),
-                        subtitle: Text('Esraa v1.0'),
+                        title: Text('التطبيق ده يا بت الخالة عشان يساعدك في يومك'),
+                        subtitle: Text('من اخوك وسندك دائماً إيهاب  ',),
                       ),
                       const Divider(),
                       const ListTile(
                         leading: Icon(Icons.favorite, color: AppColors.accent),
-                        title: Text('صنع بحب ❤️'),
-                        subtitle: Text('للدكتورة إسراء مضوي'),
+                        title: Text('صنع خصيصاً ❤️'),
+                        subtitle: Text('للدكتورة إسراء(إيلاف) مضوي'),
                       ),
                     ],
                   ),
@@ -136,7 +136,7 @@ class SettingsScreen extends StatelessWidget {
                 const SizedBox(height: 16),
                 Center(
                   child: Text(
-                    'للذكرى إبراهيم مضوي - رحمه الله 🤲',
+                    'تمنياتي لك بالتوفيق والنجاح ',
                     style: TextStyle(
                       color: Colors.grey[500],
                       fontSize: 13,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'app.dart';
 import 'providers/mood_provider.dart';
@@ -15,6 +16,7 @@ import 'services/database_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await initializeDateFormatting('ar', null);
   await DatabaseService.database;
   await NotificationService.init();
   final settings = SettingsProvider();

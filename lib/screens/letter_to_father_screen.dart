@@ -39,7 +39,7 @@ class _LetterToFatherScreenState extends State<LetterToFatherScreen> {
     _controller.clear();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
-        content: Text('🤲 تم إرسال الرسالة'),
+        content: Text('🤲 تقبل الله ورفع الله ابي درجة'),
         backgroundColor: AppColors.success,
       ),
     );
@@ -62,7 +62,7 @@ class _LetterToFatherScreenState extends State<LetterToFatherScreen> {
                     Text('🤲', style: TextStyle(fontSize: 48)),
                     SizedBox(height: 12),
                     Text(
-                      'إلى أبي الحبيب إبراهيم مضوي',
+                      'دعاء لأبي الحبيب إبراهيم مضوي',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _LetterToFatherScreenState extends State<LetterToFatherScreen> {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'اللهم اغفر له وارحمه واجعل الجنة مثواه',
+                      'اللهم اغفر له وارحمه واجعل الملتقى الفردوس الاعلى من الجنة',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 16,
@@ -92,7 +92,7 @@ class _LetterToFatherScreenState extends State<LetterToFatherScreen> {
                           controller: _controller,
                           maxLines: null,
                           decoration: const InputDecoration(
-                            hintText: 'اكتبي رسالتك إلى أبي...',
+                            hintText: 'اكتبي دعاء لأبي...',
                             isDense: true,
                             border: InputBorder.none,
                           ),
@@ -114,11 +114,11 @@ class _LetterToFatherScreenState extends State<LetterToFatherScreen> {
                       const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   child: Row(
                     children: [
-                      const Text('الرسائل السابقة',
+                      const Text('الادعية السابقة',
                           style: TextStyle(
                               fontSize: 16, fontWeight: FontWeight.bold)),
                       const Spacer(),
-                      Text('${letters.length} رسالة',
+                      Text('${letters.length} دعاء',
                           style: const TextStyle(
                               color: AppColors.textSecondary)),
                     ],
@@ -133,7 +133,7 @@ class _LetterToFatherScreenState extends State<LetterToFatherScreen> {
                             Text('✉️', style: TextStyle(fontSize: 64)),
                             SizedBox(height: 16),
                             Text(
-                              'لا توجد رسائل بعد',
+                              'اكتبي دعاء',
                               style: TextStyle(
                                 fontSize: 16,
                                 color: AppColors.textSecondary,
@@ -141,7 +141,7 @@ class _LetterToFatherScreenState extends State<LetterToFatherScreen> {
                             ),
                             SizedBox(height: 8),
                             Text(
-                              'اكتبي أول رسالة إلى أبي',
+                              'لا تنسي ان تكتبي دعاء كل يوم ورفع ابيك درجة',
                               style: TextStyle(color: AppColors.textLight),
                             ),
                           ],
