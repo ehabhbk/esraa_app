@@ -15,7 +15,7 @@ class DatabaseService {
     final path = join(dbPath, 'esraa_app.db');
     return await openDatabase(
       path,
-      version: 9,
+      version: 11,
       onCreate: _createTables,
       onUpgrade: _onUpgrade,
     );
@@ -321,6 +321,14 @@ class DatabaseService {
         createdAt TEXT NOT NULL
       )
     ''');
+    await db.execute('''
+      CREATE TABLE IF NOT EXISTS drawings (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        imagePath TEXT NOT NULL,
+        createdAt TEXT NOT NULL
+      )
+    ''');
   }
 
   static Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
@@ -388,6 +396,14 @@ class DatabaseService {
       try { await db.execute('ALTER TABLE my_looks ADD COLUMN imagePath TEXT'); } catch (_) {}
       try { await db.execute('ALTER TABLE my_looks ADD COLUMN wardrobeItemIds TEXT DEFAULT \'\''); } catch (_) {}
     }
+    if (oldVersion < 10) {
+      await db.execute('CREATE TABLE IF NOT EXISTS drawings (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, imagePath TEXT NOT NULL, createdAt TEXT NOT NULL)');
+    }
+    try { await db.execute('CREATE TABLE IF NOT EXISTS wardrobe_items (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, category TEXT NOT NULL, color TEXT, imagePath TEXT, season TEXT DEFAULT \'كل المواسم\', isFavorite INTEGER DEFAULT 0, createdAt TEXT NOT NULL)'); } catch (_) {}
+    try { await db.execute('CREATE TABLE IF NOT EXISTS skincare_routines (id INTEGER PRIMARY KEY AUTOINCREMENT, productName TEXT NOT NULL, category TEXT NOT NULL, time TEXT NOT NULL, isDone INTEGER DEFAULT 0, date TEXT NOT NULL, notes TEXT DEFAULT \'\')'); } catch (_) {}
+    try { await db.execute('CREATE TABLE IF NOT EXISTS makeup_items (id INTEGER PRIMARY KEY AUTOINCREMENT, productName TEXT NOT NULL, category TEXT NOT NULL, brand TEXT DEFAULT \'\', shade TEXT DEFAULT \'\', isFavorite INTEGER DEFAULT 0, createdAt TEXT NOT NULL)'); } catch (_) {}
+    try { await db.execute('CREATE TABLE IF NOT EXISTS my_looks (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, description TEXT DEFAULT \'\', outfitId INTEGER, makeupNotes TEXT DEFAULT \'\', hairStyle TEXT DEFAULT \'\', accessories TEXT DEFAULT \'\', rating INTEGER DEFAULT 3, imagePath TEXT, wardrobeItemIds TEXT DEFAULT \'\', createdAt TEXT NOT NULL)'); } catch (_) {}
+    try { await db.execute('CREATE TABLE IF NOT EXISTS measurements (id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT NOT NULL, weight REAL, height REAL, notes TEXT DEFAULT \'\')'); } catch (_) {}
   }
 
   static Future<int> insert(String table, Map<String, dynamic> values) async {

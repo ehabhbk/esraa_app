@@ -37,6 +37,7 @@ import 'providers/wishlist_provider.dart';
 import 'providers/idea_provider.dart';
 import 'providers/dream_provider.dart';
 import 'providers/hobby_provider.dart';
+import 'providers/drawing_provider.dart';
 import 'services/notification_service.dart';
 import 'services/database_service.dart';
 
@@ -46,6 +47,7 @@ void main() async {
   await DatabaseService.database;
   try {
     await NotificationService.init();
+    await NotificationService.requestPermissions();
     await NotificationService.scheduleAllDayReminders();
   } catch (_) {}
   final settings = SettingsProvider();
@@ -88,6 +90,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => IdeaProvider()),
         ChangeNotifierProvider(create: (_) => DreamProvider()),
         ChangeNotifierProvider(create: (_) => HobbyProvider()),
+        ChangeNotifierProvider(create: (_) => DrawingProvider()),
       ],
       child: const EsraaApp(),
     ),

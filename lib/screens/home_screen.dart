@@ -79,6 +79,7 @@ import 'wishlist_screen.dart';
 import 'ideas_screen.dart';
 import 'dreams_screen.dart';
 import 'hobbies_screen.dart';
+import 'drawing_screen.dart';
 import 'daily_summary_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -426,6 +427,10 @@ class _QuickActions extends StatelessWidget {
       _ActionItem('🎨', 'هواياتي', AppColors.orangeSoft, () {
         Navigator.push(context,
             MaterialPageRoute(builder: (_) => const HobbiesScreen()));
+      }),
+      _ActionItem('✏️', 'الرسم', AppColors.purpleSoft, () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (_) => const DrawingScreen()));
       }),
     ];
 

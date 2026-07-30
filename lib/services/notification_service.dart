@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:timezone/timezone.dart' as tz;
@@ -5,6 +6,11 @@ import 'package:timezone/data/latest.dart' as tzData;
 import '../data/motivational_messages.dart';
 import '../data/prayer_duas.dart';
 import 'database_service.dart';
+
+@pragma('vm:entry-point')
+void onDidReceiveBackgroundNotificationResponse(NotificationResponse response) {
+  NotificationService._handleNotificationResponse(response);
+}
 
 class NotificationService {
   static final FlutterLocalNotificationsPlugin _plugin =
@@ -30,10 +36,21 @@ class NotificationService {
     await _plugin.initialize(
       settings,
       onDidReceiveNotificationResponse: _onNotificationTap,
+      onDidReceiveBackgroundNotificationResponse: onDidReceiveBackgroundNotificationResponse,
     );
   }
 
-  static void _onNotificationTap(NotificationResponse response) {
+  static Future<void> requestPermissions() async {
+    if (Platform.isAndroid) {
+      final androidPlugin = _plugin.resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>();
+      if (androidPlugin != null) {
+        await androidPlugin.requestNotificationsPermission();
+        await androidPlugin.requestExactAlarmsPermission();
+      }
+    }
+  }
+
+  static _handleNotificationResponse(NotificationResponse response) {
     if (response.payload?.startsWith('task_check_') ?? false) {
       _pendingTaskPayload = response.payload;
     }
@@ -54,6 +71,10 @@ class NotificationService {
         _updateTaskAfterNotification(taskId, false);
       }
     }
+  }
+
+  static void _onNotificationTap(NotificationResponse response) {
+    _handleNotificationResponse(response);
   }
 
   static void _updateTaskAfterNotification(int taskId, bool completed) async {
@@ -111,7 +132,7 @@ class NotificationService {
       'هل أكملتي مهمة "$taskTitle" يا دكتورة إسراء؟',
       tzDate,
       details,
-      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       payload: 'task_check_$taskId',
@@ -180,7 +201,7 @@ class NotificationService {
       body,
       tzDate,
       details,
-      androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       uiLocalNotificationDateInterpretation:
           UILocalNotificationDateInterpretation.absoluteTime,
       payload: payload,

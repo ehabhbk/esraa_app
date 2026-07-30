@@ -46,37 +46,44 @@ class WaterTrackerWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 12),
-            Row(
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton.filled(
                   onPressed: water.todayCups > 0 ? water.removeCup : null,
-                  icon: const Icon(Icons.remove),
+                  icon: const Icon(Icons.remove, size: 18),
                   style: IconButton.styleFrom(
                     backgroundColor: Colors.grey[200],
                     foregroundColor: Colors.grey[700],
+                    minimumSize: const Size(32, 32),
+                    padding: EdgeInsets.zero,
                   ),
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 8),
                 Text(
                   '${water.todayCups}',
                   style: const TextStyle(
-                    fontSize: 32,
+                    fontSize: 24,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 8),
                 IconButton.filled(
                   onPressed: water.todayCups < water.targetCups
                       ? water.addCup
                       : null,
-                  icon: const Icon(Icons.add),
+                  icon: const Icon(Icons.add, size: 18),
                   style: IconButton.styleFrom(
                     backgroundColor: AppColors.waterBlue,
                     foregroundColor: Colors.white,
+                    minimumSize: const Size(32, 32),
+                    padding: EdgeInsets.zero,
                   ),
                 ),
               ],
+            ),
             ),
           ],
         );
